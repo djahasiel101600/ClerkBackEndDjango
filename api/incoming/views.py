@@ -4,6 +4,7 @@ from .models import IARRecord
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
+import logging
 
 # Create your views here.
 class IARRecordViewSet(viewsets.ModelViewSet):
@@ -17,6 +18,7 @@ class IARRecordCreateView(APIView):
     permission_classes = [permissions.AllowAny]
 
     def post(self, request, *args, **kwargs):
+        logging.debug("POST request received")
         serializer = IARSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
