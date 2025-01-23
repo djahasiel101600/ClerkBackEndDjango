@@ -1,6 +1,6 @@
 from rest_framework import permissions, viewsets
 from .serializers import IARSerializer, POSerializer
-from .models import IARRecord
+from .models import IARRecord, PORecord
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
@@ -39,9 +39,11 @@ class IARRecordCreateView(APIView):
 #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class PORecordViewSet(viewsets.ModelViewSet):
-    queryset = IARRecord.objects.all()
+    queryset = PORecord.objects.all()
     serializer_class = POSerializer
     permission_classes = [permissions.AllowAny]
+
+    
 
 class PORecordCreateView(APIView):
     permission_classes = [permissions.AllowAny]
